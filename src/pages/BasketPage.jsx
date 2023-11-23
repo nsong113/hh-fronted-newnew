@@ -9,7 +9,7 @@ import { Button, Main } from '../component/BasketPage/style';
 const fetchCartItems = async () => {
 console.log('Fetching cart items...');
 try {
-    const response = await fetch('http://15.164.102.17:3000/api/orders', {
+    const response = await fetch('http://tonadus.shop:3000/api/orders', {
     method: 'GET',
     headers: {
         Authorization: 'Bearer eyJhbGciOiJIUzI1NiIs ...',
