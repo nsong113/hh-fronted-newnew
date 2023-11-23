@@ -31,6 +31,31 @@ const Join = () => {
 
   const onJoinHandler = async () => {
     try {
+      if (!loginId) {
+        alert('아이디를 입력해주세요.');
+        return;
+      }
+  
+      if (!password) {
+        alert('비밀번호를 입력해주세요.');
+        return;
+      }
+  
+      if (!nickname) {
+        alert('닉네임을 입력해주세요.');
+        return;
+      }
+
+      if (loginId === password) {
+        alert('아이디와 비밀번호는 같을 수 없습니다.');
+        return;
+      }
+  
+      if (password.length < 8) {
+        alert('비밀번호는 최소 8자 이상이어야 합니다.');
+        return;
+      }
+
       const response = await registerMutation.mutateAsync({ loginId, password, nickname });
       const token = response.token;
       document.cookie = `token=${token}; path=/`;
