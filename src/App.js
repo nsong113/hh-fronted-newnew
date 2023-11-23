@@ -22,7 +22,7 @@ function App() {
           {/* 로그인 */}
           <Route path="/login" element={<LoginPage />} />
           {/* 메인페이지 */}
-          <Route path="/goods" element={<GoodsPage />} />
+          <Route path="/" element={<GoodsPage />} />
           {/* 글작성 페이지 */}
           <Route path="/goods/content" element={<ProductPage />} />
           {/* 글수정 페이지 */}

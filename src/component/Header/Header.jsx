@@ -8,7 +8,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   const onClickHomeHandler = () => {
-    navigate("/goods");
+    navigate("/");
   };
 
   const onClickUploadHandler = () => {
@@ -16,28 +16,30 @@ const Header = () => {
   };
 
   const onClickhandleLogout = () => {
-    navigate('/goods');
+    navigate("/");
   };
 
   const onClickhandleLogin = () => {
-    navigate('/login');
+    navigate("/login");
   };
 
   const onClickhandleJoin = () => {
-    navigate('/signup');
+    navigate("/signup");
   };
 
   const onClickhandleBasket = () => {
     console.log("Basket 클릭됨");
-    navigate('/orders');
+    navigate("/orders");
   };
-  
 
   return (
     <ST.HeaderBoxDiv>
       <ST.HeaderContainerDiv>
         <ST.HeaderFlexDiv>
-          <LuDessert style={{ fontSize: "40px" }} onClick={onClickHomeHandler} />
+          <LuDessert
+            style={{ fontSize: "40px" }}
+            onClick={onClickHomeHandler}
+          />
           <ST.HeaderTitleH1>Dessert Shop</ST.HeaderTitleH1>
         </ST.HeaderFlexDiv>
         <ST.HeaderUtilDiv>
