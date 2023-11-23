@@ -2,7 +2,7 @@ import React from "react";
 import * as ST from "./style";
 import { FaInstagramSquare, FaFacebookF, FaGithub } from "react-icons/fa";
 import { FaXTwitter, FaThreads } from "react-icons/fa6";
-//
+
 const Footer = () => {
   return (
     <ST.FooterBoxDiv>

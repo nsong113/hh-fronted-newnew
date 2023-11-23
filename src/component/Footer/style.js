@@ -1,15 +1,33 @@
 import styled from "styled-components";
 
+// export const FooterBoxDiv = styled.div`
+//   width: 100%;
+//   height: 38vh;
+//   text-align: center;
+//   background-color: #ead2d4;
+// `;
+
+// export const FooterContainerDiv = styled.div`
+//   width: 80%;
+//   height: 30vh;
+
+//   margin: 0 auto;
+//   font-size: 16px;
+//   padding: 20px;
+// `;
+
 export const FooterBoxDiv = styled.div`
   width: 100%;
-  height: 38vh;
+  bottom: 0;
+  position: fixed;
+  min-height: 30vh;
   text-align: center;
   background-color: #ead2d4;
 `;
-//
+
 export const FooterContainerDiv = styled.div`
   width: 80%;
-  height: 30vh;
+  min-height: 30vh;
 
   margin: 0 auto;
   font-size: 16px;
@@ -20,6 +38,10 @@ export const FooterInfoDiv = styled.div`
   width: 30%;
   margin: 0 auto;
   height: 60%;
+
+  p {
+    margin-bottom: 17px; 
+  }
 `;
 export const FooterSNSContainerDiv = styled.div`
   width: 35%;

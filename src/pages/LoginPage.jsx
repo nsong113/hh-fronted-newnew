@@ -1,58 +1,78 @@
 // 로그인 페이지
-import React, { useState } from "react";
-import { useMutation } from "react-query";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { useMutation } from 'react-query';
+import { Link } from 'react-router-dom';
 import * as Styled from "../component/Signup/style";
 import Header from "../component/Header/Header";
 import Footer from "../component/Footer/Footer";
-import axios from "axios";
-//
+import axios from 'axios';
+
+
 function Login() {
   const [loginId, setLoginId] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const loginMutation = useMutation(async ({ loginId, password }) => {
-    try {
-      const response = await axios.post("http://43.200.49.63:3000/api/login", {
-        loginId,
-        password,
-      });
+  const loginMutation = useMutation(
+    async ({ loginId, password }) => {
+      try {
+        const response = await axios.post("http://15.164.102.17:3000/api/login", {
+          loginId,
+          password,
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
 
-      // Assuming your token is in the response.data.token
-      const token = response.data.token;
+        const token = response?.data?.token;
 
-      console.log("Login Response:", response.data);
+        console.log('Login Response:', response.data);
+        alert('로그인이 완료 되었습니다.');
 
-      return { userData: response.data, token };
-    } catch (error) {
-      console.log("Login Error:", error);
-      throw error;
+        return { userData: response.data, token };
+      } catch (error) {
+        console.log('Login Error:', error);
+        setError('로그인을 다시 시도 하세요.');
+        throw error;
+      }
     }
-  });
+  );
 
   const onLoginHandler = async () => {
     if (!loginId || !password) {
-      setError("ID and password are required.");
+      setError('ID and password are required.');
       return;
     }
 
     setError("");
     try {
-      const { userData, token } = await loginMutation.mutateAsync({
-        loginId,
-        password,
-      });
+      const { userData } = await loginMutation.mutateAsync({ loginId, password });
 
-      console.log("User data after login:", userData);
+      console.log('User data after login:', userData);
 
-      document.cookie = `token=${token}; path=/`;
+      // Perform actions with the obtained token if needed
+      // document.cookie = `token=${token}; path=/`;
+      // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
     } catch (error) {
-      console.error("Error during login:", error);
-      if (error.response && error.response.status === 401) {
-        setError("Invalid credentials. Please check your ID and password.");
+      console.error('Error during login:', error);
+
+      if (error.response) {
+        const status = error.response.status;
+        const responseData = error.response.data;
+
+        if (status === 400 && responseData.message === '데이터 형식이 올바르지 않습니다.') {
+          setError('데이터 형식이 올바르지 않습니다.');
+        } else if (status === 401 && responseData.message === '존재하지 않는 닉네임입니다.') {
+          setError('존재하지 않는 닉네임입니다.');
+        } else if (status === 401 && responseData.message === '비밀번호가 일치하지 않습니다.') {
+          setError('비밀번호가 일치하지 않습니다.');
+        } else {
+          setError('로그인 중 예상치 못한 오류가 발생했습니다.');
+        }
       } else {
-        setError("An unexpected error occurred during login.");
+        setError('로그인 중 예상치 못한 오류가 발생했습니다.');
       }
     }
   };
@@ -85,16 +105,13 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <Styled.Button
-            type="button"
-            onClick={onLoginHandler}
-            disabled={loginMutation.isLoading}
-          >
-            {loginMutation.isLoading ? "Logging in..." : "Login"}
+          <Styled.Button type="button" onClick={onLoginHandler} disabled={loginMutation.isLoading}>
+            {loginMutation.isLoading ? 'Logging in...' : 'Login'}
           </Styled.Button>
 
           <Styled.LinkText>
-            계정이 없으신가요? <Link to="/signup">회원가입</Link>
+            계정이 없으신가요?{' '}
+            <Link to="/signup">회원가입</Link>
           </Styled.LinkText>
         </Styled.Form>
       </Styled.Container>

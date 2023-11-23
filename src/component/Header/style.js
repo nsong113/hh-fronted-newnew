@@ -5,7 +5,7 @@ export const HeaderBoxDiv = styled.div`
   height: 10vh;
   background-color: #ead2d4;
 `;
-//
+
 export const HeaderContainerDiv = styled.div`
   width: 80%;
   height: 10vh;
