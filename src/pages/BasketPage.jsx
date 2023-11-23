@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { useQuery, useMutation } from 'react-query';
 import Header from '../component/Header/Header';
 import Footer from '../component/Footer/Footer';
-import { Button } from '../component/BasketPage/style';
+// import { Button } from '../component/BasketPage/style';
+import { Button, Main } from '../component/BasketPage/style';
+
 
 const fetchCartItems = async () => {
 console.log('Fetching cart items...');
@@ -99,6 +101,7 @@ const handlePurchase = () => {
 return (
     <div>
     <Header />
+    <Main>
     <div>
     <h2>Shopping Cart</h2>
     {!isFetchButtonClicked && <Button onClick={handleFetchCart}>조회</Button>}
@@ -145,6 +148,7 @@ return (
         </ul>
     )}
     </div>
+    </Main>
     <Footer />
 </div>
 );

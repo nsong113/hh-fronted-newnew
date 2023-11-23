@@ -33,3 +33,7 @@ export const StyledButtonContainer = styled.div`
     display: flex;
     gap: 10px;  
 `;
+
+export const Main = styled.div`
+  height: 85vh;
+`;

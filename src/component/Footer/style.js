@@ -19,7 +19,6 @@ import styled from "styled-components";
 export const FooterBoxDiv = styled.div`
   width: 100%;
   bottom: 0;
-  position: fixed;
   min-height: 30vh;
   text-align: center;
   background-color: #ead2d4;

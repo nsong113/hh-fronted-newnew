@@ -4,6 +4,7 @@ const Container = styled.div`
 max-width: 400px;
 margin: 17px auto;
 width: 80%;
+height: 60vh;
 display: grid;
 `;
 
