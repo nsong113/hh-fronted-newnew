@@ -15,7 +15,7 @@ const Join = () => {
   const registerMutation = useMutation(
     async ({ loginId, password, nickname }) => {
       try {
-        const response = await axios.post('http://tonadus.shop:3000/signup', {
+        const response = await axios.post('http://tonadus.shop:3000/api/signup', {
           loginId,
           password,
           nickname,
