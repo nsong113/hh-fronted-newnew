@@ -16,7 +16,7 @@ function Login() {
   const loginMutation = useMutation(
     async ({ loginId, password }) => {
       try {
-        const response = await axios.post("http://15.164.102.17:3000/api/login", {
+        const response = await axios.post("http://tonadus.shop:3000/login", {
           loginId,
           password,
         }, {
